@@ -9,7 +9,7 @@ function [sim] = simulation(model, prob)
 
     function [result] = simulate(sim, sizes)
 %       CARRY_ON Perform a simulation of a damage model.
-        num_sims = size(sizes);     % number of series
+        num_sims = size(sizes, 1);  % number of series
         num_reps = 5;               % number of repeats(length of seris)
 
         result = struct();

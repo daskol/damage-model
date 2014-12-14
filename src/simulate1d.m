@@ -7,3 +7,5 @@ sm = simulation(dm, pm);
 result = sm.simulate(sm, sizes);
 
 disp(result);
+
+sm.visualize(sm, result);
