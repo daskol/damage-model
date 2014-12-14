@@ -18,8 +18,9 @@ function [model] = damage_model_1d(prob, N)
         figure;
         hold on;
         grid on;
-        x1 = model.lattice == 0;
-        x2 = model.lattice == 1;
-        plot(x1, zeros(numel(x1)), 'rx', x2, ones(numel(x2)), 'b+');
+        x1 = find(model.lattice == 0);
+        x2 = find(model.lattice == 1);
+        scatter(x1, zeros(numel(x1), 1), 100, 'r.');
+        scatter(x2, zeros(numel(x2), 1), 100, 'b.');
     end
 end
