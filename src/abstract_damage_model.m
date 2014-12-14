@@ -2,14 +2,18 @@ function [model] = abstract_damage_model(prob)
 %   ABSTRACT_DAMAGE_MODEL Construct abstract damage model to customize
 %   it later and to make a simulation.
     model = struct();
+
     model.size = [];                % size of lattice along each dimension
     model.dim = 0;                  % lattice dimension
     model.lattice = [];             % lattice
     model.prob = prob;              % probability model
+
     model.is_damaged = @is_damaged;
     model.damage = @damage;
     model.visualize = @visualize;
     model.simulate = @simulate;
+    model.renorm = @renorm;
+    model.characters = @characters;
     
     model.set_lattice = @set_lattice;
     model.set_size = @set_size;
@@ -21,7 +25,6 @@ function [model] = abstract_damage_model(prob)
     
     function [damaged] = is_damaged(model)
 %       IS_DAMAGE Check wether model was percolated.
-        fprintf('abstract_damage_model\\is_damaged()\n');
         damaged = 1;
     end
 
@@ -39,10 +42,17 @@ function [model] = abstract_damage_model(prob)
 
     function [model] = simulate(model)
 %       SIMULATE Simulate a phase transition(percolation).
-        fprintf('abstract_damage_model\\simulate()\n');
         while ~model.is_damaged(model)
             model = model.damage(model);
         end
+    end
+
+    function [model] = renorm(model)
+%       RENORM Implementation of renorm transformation step.
+    end
+
+    function [data] = characters(model)
+%       CHARACTERS Calculate damage model's characteristics.
     end
 
 
