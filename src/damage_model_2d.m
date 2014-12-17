@@ -10,8 +10,7 @@ function [model] = damage_model_2d(prob, N)
 
     function [damaged] = is_damaged(model)
 %        IS_DAMAGE Check wether model was percolated.
-%         fprintf('damage_model_2d\\is_damaged()\n');
-% Brute force search
+%% Brute force search
         height  = size(model.lattice,1);
         width = size(model.lattice,2);
         
@@ -26,6 +25,11 @@ function [model] = damage_model_2d(prob, N)
             end
         end
         damaged = sum(Cluster(:,width)) >= 1;
+        %% Visualization
+        hold on;
+        imagesc(2.-(Cluster+model.lattice));
+        hold off;
+        
     end
 
     function [] = visualize(model)
